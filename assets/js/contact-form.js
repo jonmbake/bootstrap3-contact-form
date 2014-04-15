@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     //do a little client-side validation -- check that each field has a value and e-mail field is in proper format
     var hasErrors = false;
-    $('#feedbackForm input,textarea').each(function() {
+    $('#feedbackForm input,textarea').not('.optional').each(function() {
       if (!$(this).val()) {
         hasErrors = true;
         contactForm.addError($(this));
@@ -15,6 +15,12 @@ $(document).ready(function() {
     if (!contactForm.isValidEmail($email.val())) {
       hasErrors = true;
       contactForm.addError($email);
+    }
+
+    var $phone = $('#phone');
+    if (!contactForm.isValidPhone($phone.val())) {
+      hasErrors = true;
+      contactForm.addError($phone);
     }
 
     //if there are any errors return without sending e-mail
@@ -39,7 +45,7 @@ $(document).ready(function() {
       }
    });
     return false;
-  }); 
+  });
 });
 
 //namespace as not to pollute global namespace
@@ -47,6 +53,16 @@ var contactForm = {
   isValidEmail: function (email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
+  },
+  /**
+   * Validates that phone number has 10 digits.
+   *
+   * @param  {String}  phone phone number to validate
+   * @return {Boolean} if phone number is valid
+   */
+  isValidPhone: function (phone) {
+    phone = phone.replace(/[^0-9]/g, '');
+    return (phone.length === 10);
   },
   clearErrors: function () {
     $('#emailAlert').remove();

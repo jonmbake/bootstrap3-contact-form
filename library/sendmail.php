@@ -4,6 +4,12 @@
 
   //add you e-mail address here
   define("MY_EMAIL", "jmb@jonbake.com");
+  define("EMAIL_SUBJECT", "Feedback Form Results");
+
+  //a map of fields to include in email, along with if they are required or not
+  //aparently in PHP, arrays (maps) can't be constants?
+  $fields_req =  array("name" => true, "title" => false, "company" => false, "company" => false,
+    "website" => false, "phone" => true, "message" => true);
 
   /**
    * Sets error header and json error message response.
@@ -17,25 +23,28 @@
   }
 
   /**
-   * Return a formatted message body of the form:
-   * Name: <name of submitter>
-   * Comment: <message/comment submitted by user>
+   * Pulls posted values for all fields in $fields_req array.
+   * If a required field does not have a value, an error response is given.
    *
-   * @param String $name     name of submitter
-   * @param String $messsage message/comment submitted
+   * @param [Array] $fields_req a map of field name to required
    */
-  function setMessageBody ($name, $message) {
-    $message_body = "Name: " . $name."\n\n";
-    $message_body .= "Comment:\n" . nl2br($message);
+  function setMessageBody ($fields_req) {
+    $message_body = "";
+    foreach ($fields_req as $name => $required) {
+      if ($required && empty($name)) {
+        errorResponse("$name is empty.");
+      } else {
+        $message_body .= ucfirst($name) . ":  " . $_POST[$name] . "\n";
+      }
+    }
     return $message_body;
   }
 
   $email = $_POST['email']; 
-  $message = $_POST['message'];
 
   header('Content-type: application/json');
   //do some simple validation. this should have been validated on the client-side also
-  if (empty($email) || empty($message)) {
+  if (empty($email)) {
   	errorResponse('Email or message is empty.');
   }
 
@@ -47,7 +56,7 @@
   }
 
   //try to send the message
-  if(mail(MY_EMAIL, "Feedback Form Results", setMessageBody($_POST["name"], $message), "From: $email")) {
+  if(mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email")) {
   	echo json_encode(array('message' => 'Your message was successfully submitted.'));
   } else {
   	header('HTTP/1.1 500 Internal Server Error');
