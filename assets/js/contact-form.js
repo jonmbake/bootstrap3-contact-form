@@ -1,5 +1,7 @@
 $(document).ready(function() {
   $("#feedbackSubmit").click(function() {
+    var $btn = $(this);
+    $btn.button('loading');
     //clear any errors
     contactForm.clearErrors();
 
@@ -25,6 +27,7 @@ $(document).ready(function() {
 
     //if there are any errors return without sending e-mail
     if (hasErrors) {
+      $btn.button('reset');
       return false;
     }
 
@@ -33,15 +36,16 @@ $(document).ready(function() {
       type: "POST",
       url: "library/sendmail.php",
       data: $("#feedbackForm").serialize(),
-      success: function(data)
-      {
+      success: function(data) {
         contactForm.addAjaxMessage(data.message, false);
         //get new Captcha on success
         $('#captcha').attr('src', 'library/vender/securimage/securimage_show.php?' + Math.random());
       },
-      error: function(response)
-      {
+      error: function(response) {
         contactForm.addAjaxMessage(response.responseJSON.message, true);
+      },
+      complete: function() {
+        $btn.button('reset');
       }
    });
     return false;
