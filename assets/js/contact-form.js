@@ -38,6 +38,7 @@ $(document).ready(function() {
       data: $("#feedbackForm").serialize(),
       success: function(data) {
         contactForm.addAjaxMessage(data.message, false);
+        contactForm.clearForm();
         //get new Captcha on success
         $('#captcha').attr('src', 'library/vender/securimage/securimage_show.php?' + Math.random());
       },
@@ -72,6 +73,9 @@ var contactForm = {
     $('#emailAlert').remove();
     $('#feedbackForm .help-block').hide();
     $('#feedbackForm .form-group').removeClass('has-error');
+  },
+  clearForm: function () {
+    $('#feedbackForm input,textarea').val("");
   },
   addError: function ($input) {
     $input.siblings('.help-block').show();
