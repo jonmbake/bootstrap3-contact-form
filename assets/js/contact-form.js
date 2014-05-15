@@ -51,6 +51,14 @@ $(document).ready(function() {
    });
     return false;
   });
+  $('#feedbackForm input').change(function () {
+    var asteriskSpan = $(this).siblings('.glyphicon-asterisk');
+    if ($(this).val()) {
+      asteriskSpan.css('color', '#00FF00');
+    } else {
+      asteriskSpan.css('color', 'black');
+    }
+  });
 });
 
 //namespace as not to pollute global namespace
@@ -75,6 +83,7 @@ var contactForm = {
     $('#feedbackForm .form-group').removeClass('has-error');
   },
   clearForm: function () {
+    $('.glyphicon-asterisk').css('color', 'black');
     $('#feedbackForm input,textarea').val("");
   },
   addError: function ($input) {
