@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $('#feedbackForm input').not('.optional').after('<span class="glyphicon glyphicon-asterisk form-control-feedback"></span>');
   $("#feedbackSubmit").click(function() {
     var $btn = $(this);
     $btn.button('loading');
