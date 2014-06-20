@@ -16,9 +16,9 @@ To use this within your project, the assets and library directory must be web ac
 ### Adding or Removing Fields
 To add or remove a field from the contact form:
 
-1. Add or remove HTML element from form, based on example
+1. Add or remove the HTML element from the form (the *form-group*)
 2. If the field is optional then add the class 'optional' to the input in the element
-3. Add or remove an entry from the `$fields_req` array (map) in **sendmail.php** (if the field is required the map entry's value must be true, otherwise false)
+3. Add or remove an entry from the `$fields_req` array (map) in *sendmail.php* (if the field is required the map entry's value must be true, otherwise false)
 
 ### Further Configuration
 The only configuration required is to change the MY_EMAIL constant in library/sendmail.php.  You can also change the email subject by editing EMAIL_SUBJECT.
