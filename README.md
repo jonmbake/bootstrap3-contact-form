@@ -1,4 +1,6 @@
-## bootstrap3-contact-form
+bootstrap3-contact-form
+=======================
+
 Bootstrap 3 Contact Form with Captcha
 
 A simple bootstrap 3 contact form using [SecureImage](https://github.com/dapphp/securimage) Captcha.
