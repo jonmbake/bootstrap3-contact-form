@@ -71,13 +71,14 @@
             <img id="captcha" src="library/vender/securimage/securimage_show.php" alt="CAPTCHA Image" />
             <a href="#" onclick="document.getElementById('captcha').src = 'library/vender/securimage/securimage_show.php?' + Math.random(); return false" class="btn btn-info btn-sm">Show a Different Image</a><br/>
             <div class="form-group has-feedback" style="margin-top: 10px;">
+              <label class="control-label" for="captcha_code">Text Within Image</label>
               <input type="text" class="form-control input-sm" name="captcha_code" id="captcha_code" placeholder="For security, please enter the code displayed in the box." />
               <span class="help-block" style="display: none;">Please enter the code displayed within the image.</span>
             </div>
             <span class="help-block" style="display: none;">Please enter a the security code.</span>
             <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Sending..." style="display: block; margin-top: 10px;">Send Feedback</button>
           </form>
-          <h3>* Indicates a required field.</h3>
+          <h4>* Indicates a required field.</h4>
         </div><!--/span-->
       </div><!--/row-->
       <hr>
