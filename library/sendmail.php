@@ -56,6 +56,6 @@
   }
 
   //try to send the message
-  mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email");
   echo json_encode(array('message' => 'Your message was successfully submitted.'));
+  mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email");
 ?>
