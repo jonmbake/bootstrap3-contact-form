@@ -56,9 +56,6 @@
   }
 
   //try to send the message
-  if(mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email")) {
-    echo json_encode(array('message' => 'Your message was successfully submitted.'));
-  } else {
-    errorResponse('Unexpected error while attempting to send e-mail.');
-  }
+  mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email");
+  echo json_encode(array('message' => 'Your message was successfully submitted.'));
 ?>
