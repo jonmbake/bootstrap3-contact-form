@@ -3,7 +3,7 @@
   session_start();
 
   //add you e-mail address here
-  define("MY_EMAIL", "jmb@jonbake.com");
+  define("MY_EMAIL", "<<!! YOUR-EMAIL-ADDRESS-HERE !!>>");
   define("EMAIL_SUBJECT", "Feedback Form Results");
 
   //a map of fields to include in email, along with if they are required or not
