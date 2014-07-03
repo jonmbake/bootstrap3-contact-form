@@ -1,15 +1,16 @@
 $(document).ready(function() {
   $('#feedbackForm input').not('.optional').after('<span class="glyphicon glyphicon-asterisk form-control-feedback"></span>');
+
   $("#feedbackSubmit").click(function() {
     var $btn = $(this);
     $btn.button('loading');
-    //clear any errors
     contactForm.clearErrors();
 
     //do a little client-side validation -- check that each field has a value and e-mail field is in proper format
     var hasErrors = false;
     $('#feedbackForm input,textarea').not('.optional').each(function() {
-      if (!$(this).val()) {
+      var $this = $(this);
+      if (($this.is(':checkbox') && !$this.is(':checked')) || !$this.val()) {
         hasErrors = true;
         contactForm.addError($(this));
       }
