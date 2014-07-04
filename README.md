@@ -18,7 +18,7 @@ A simpler version of the contact form without the optional fields outlined above
 2. PHP (version > 5.2.0) installed on your server **Must have gd library enabled**
 3. [SecureImage Captcha](https://github.com/dapphp/securimage) Captcha (included in [library/vender/securimage/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/library/vender/securimage))
 4. jQuery
-5. **The HTML for the contact form**, which can be extracted from index.html (a demo of the contact form).  The extraction points are labeled with the HTML comments 'EXTRACT HERE'.
+5. **The HTML for the contact form**, which can be extracted from index.html
 6. **Optional*** [International Telephone Input](https://github.com/Bluefieldscom/intl-tel-input) (included in [assets/vender/intl-tel-input/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/assets/vender/intl-tel-input))- This is used to validate and format the phone input field. Only need this if the phone field is present.
 
 ### Adding or Removing Fields
