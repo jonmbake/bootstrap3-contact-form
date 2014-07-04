@@ -5,7 +5,7 @@ Bootstrap 3 Contact Form with Captcha
 
 A simple bootstrap 3 contact form using [SecureImage Captcha](https://github.com/dapphp/securimage).
 
-### Version 1.1 (Current Version)
+### Current Version
 Version 1.1 bumps bootstrap version to 3.1.1 and adds optional fields of Title, Company, and Website, along with Phone field.
 It also refactors sendmail.php to extract *field name/if required* to array.
 
