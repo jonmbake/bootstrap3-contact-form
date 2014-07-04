@@ -7,7 +7,8 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
     <title>Bootstrap 3 Contact Form</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="assets/vender/intl-tel-input/css/intlTelInput.css">
     <!-- EXTRACT ADDITIONAL STYLING HERE =======> -->
     <style>
       .container {
@@ -55,8 +56,8 @@
             </div>
             <div class="form-group has-feedback">
               <label class="control-label" for="phone">Phone</label>
-              <input type="tel" class="form-control input-sm" id="phone" name="phone" />
-              <span class="help-block" style="display: none;">Please enter a valid phone number.  Must be ten digits long.</span>
+              <input type="tel" class="form-control input-sm optional" id="phone" name="phone" />
+              <span class="help-block" style="display: none;">Please enter a valid phone number.</span>
             </div>
             <div class="form-group has-feedback">
               <label class="control-label" for="email">Email Address</label>
@@ -86,6 +87,7 @@
     <!-- <======= UP TO HERE -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="assets/vender/intl-tel-input/js/intlTelInput.min.js"></script>
     <script src="assets/js/contact-form.js"></script>
   </body>
 </html>

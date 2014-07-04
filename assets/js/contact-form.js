@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $("#phone").intlTelInput({validationScript: "assets/vender/intl-tel-input/js/isValidNumber.js"});
+  $(".intl-tel-input.inside").css('width', '100%');
+
   $('#feedbackForm input')
     .not('.optional,.no-asterisk')
     .after('<span class="glyphicon glyphicon-asterisk form-control-feedback"></span>');
@@ -24,9 +27,9 @@ $(document).ready(function() {
     }
 
     var $phone = $('#phone');
-    if (!contactForm.isValidPhone($phone.val())) {
+    if (!$phone.intlTelInput("isValidNumber")) {
       hasErrors = true;
-      contactForm.addError($phone);
+      contactForm.addError($phone.parent());
     }
 
     //if there are any errors return without sending e-mail
@@ -70,16 +73,6 @@ var contactForm = {
   isValidEmail: function (email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
-  },
-  /**
-   * Validates that phone number has 10 digits.
-   *
-   * @param  {String}  phone phone number to validate
-   * @return {Boolean} if phone number is valid
-   */
-  isValidPhone: function (phone) {
-    phone = phone.replace(/[^0-9]/g, '');
-    return (phone.length === 10);
   },
   clearErrors: function () {
     $('#emailAlert').remove();
