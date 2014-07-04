@@ -23,9 +23,9 @@ A simpler version of the contact form without the optional fields outlined above
 ### Adding or Removing Fields
 To add or remove a field from the contact form:
 
-* Add or remove the HTML element from the form (the *form-group*)
-* When adding, if the field is optional then add the class `.optional` to the input in the element
-* Add or remove an entry from the `$fields_req` array (map) in *sendmail.php* (if the field is required the map entry's value must be true, otherwise false)
+1. Add or remove the HTML element from the form (the *form-group*)
+2. When adding, if the field is optional then add the class `.optional` to the input in the element
+3. Add or remove an entry from the `$fields_req` array (map) in *sendmail.php* (if the field is required the map entry's value must be true, otherwise false)
 
 ### Further Configuration
 * **Required** Change the MY_EMAIL constant in library/sendmail.php to the email address you want the contant form data to get submitted to.  You can also change the email subject by editing EMAIL_SUBJECT.
