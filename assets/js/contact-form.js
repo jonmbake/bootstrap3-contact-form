@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if ($("#phone")) {
+  if ($("#phone").intlTelInput) {
     $("#phone").intlTelInput({validationScript: "assets/vender/intl-tel-input/js/isValidNumber.js"});
     $(".intl-tel-input.inside").css('width', '100%');
   }
@@ -29,7 +29,7 @@ $(document).ready(function() {
     }
 
     var $phone = $('#phone');
-    if ($phone && !$phone.intlTelInput("isValidNumber")) {
+    if ($phone.intlTelInput && !$phone.intlTelInput("isValidNumber")) {
       hasErrors = true;
       contactForm.addError($phone.parent());
     }
