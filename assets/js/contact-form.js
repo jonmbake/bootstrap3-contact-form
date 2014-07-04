@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  $("#phone").intlTelInput({validationScript: "assets/vender/intl-tel-input/js/isValidNumber.js"});
-  $(".intl-tel-input.inside").css('width', '100%');
+  if ($("#phone")) {
+    $("#phone").intlTelInput({validationScript: "assets/vender/intl-tel-input/js/isValidNumber.js"});
+    $(".intl-tel-input.inside").css('width', '100%');
+  }
 
   $('#feedbackForm input')
     .not('.optional,.no-asterisk')
@@ -27,7 +29,7 @@ $(document).ready(function() {
     }
 
     var $phone = $('#phone');
-    if (!$phone.intlTelInput("isValidNumber")) {
+    if ($phone && !$phone.intlTelInput("isValidNumber")) {
       hasErrors = true;
       contactForm.addError($phone.parent());
     }
