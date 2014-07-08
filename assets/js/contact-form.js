@@ -29,7 +29,7 @@ $(document).ready(function() {
     }
 
     var $phone = $('#phone');
-    if ($phone.intlTelInput && !$phone.intlTelInput("isValidNumber")) {
+    if ($phone.val() && $phone.intlTelInput && !$phone.intlTelInput("isValidNumber")) {
       hasErrors = true;
       contactForm.addError($phone.parent());
     }

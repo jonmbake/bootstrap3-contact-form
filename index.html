@@ -51,6 +51,17 @@
               <input type="text" class="form-control input-sm optional" id="company" name="company" />
             </div>
             <div class="form-group">
+  <label class="control-label" for="opts">Options</label>
+  <select name="opts" id="opts" class="form-control" multiple>
+    <!-- notice value is blank, this is a falsy value in javascript -->
+    <option value="">Select your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+  <span class="help-block" style="display: none;">Please enter an option</span>
+</div>
+            <div class="form-group">
               <label class="control-label" for="website">Website</label>
               <input type="url" class="form-control input-sm optional" id="website" name="website" />
             </div>
