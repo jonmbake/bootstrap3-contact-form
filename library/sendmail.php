@@ -8,8 +8,7 @@
 
   //a map of fields to include in email, along with if they are required or not
   //aparently in PHP, arrays (maps) can't be constants?
-  $fields_req =  array("name" => true, "title" => false, "company" => false, "company" => false,
-    "website" => false, "phone" => true, "message" => true);
+  $fields_req =  array("name" => true, /*"title" => false, "company" => false, "website" => false,*/ "phone" => false, "message" => true);
 
   /**
    * Sets error header and json error message response.
