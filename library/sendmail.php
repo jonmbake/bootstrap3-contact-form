@@ -30,10 +30,11 @@
   function setMessageBody ($fields_req) {
     $message_body = "";
     foreach ($fields_req as $name => $required) {
-      if ($required && empty($name)) {
+      $postedValue = $_POST[$name];
+      if ($required && empty($postedValue)) {
         errorResponse("$name is empty.");
       } else {
-        $message_body .= ucfirst($name) . ":  " . $_POST[$name] . "\n";
+        $message_body .= ucfirst($name) . ":  " . $postedValue . "\n";
       }
     }
     return $message_body;
@@ -46,6 +47,7 @@
   if (empty($email)) {
     errorResponse('Email or message is empty.');
   }
+  $messageBody = setMessageBody($fields_req);
 
   //do Captcha check, make sure the submitter is not a robot:)...
   include_once './vender/securimage/securimage.php';
@@ -56,5 +58,5 @@
 
   //try to send the message
   echo json_encode(array('message' => 'Your message was successfully submitted.'));
-  mail(MY_EMAIL, EMAIL_SUBJECT, setMessageBody($fields_req), "From: $email");
+  mail(MY_EMAIL, EMAIL_SUBJECT, $messageBody, "From: $email");
 ?>

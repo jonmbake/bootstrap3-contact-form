@@ -86,8 +86,9 @@ var contactForm = {
     $('#feedbackForm input,textarea').val("");
   },
   addError: function ($input) {
-    $input.siblings('.help-block').show();
-    $input.parent('.form-group').addClass('has-error');
+    var parentFormGroup = $input.parents('.form-group');
+    parentFormGroup.children('.help-block').show();
+    parentFormGroup.addClass('has-error');
   },
   addAjaxMessage: function(msg, isError) {
     $("#feedbackSubmit").after('<div id="emailAlert" class="alert alert-' + (isError ? 'danger' : 'success') + '" style="margin-top: 5px;">' + $('<div/>').text(msg).html() + '</div>');
