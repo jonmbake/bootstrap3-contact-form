@@ -38,14 +38,5 @@ SetEnv FEEDBACK_PASSWORD my!password!
 SetEnv FEEDBACK_ENCRYPTION TLS
 ```
 
-They can also be specified at the system level, usually in your *.profile* file for a Unix-based OS:
-
-```
-export FEEDBACK_HOSTNAME=smtp.gmail.com
-export FEEDBACK_EMAIL=me@gmail.com
-export FEEDBACK_PASSWORD=my!password!
-export FEEDBACK_ENCRYPTION=TLS
-```
-
 ## Check It Out
 Demo: http://jonbake.com/demos/contact-form/
