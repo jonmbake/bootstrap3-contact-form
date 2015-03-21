@@ -3,32 +3,48 @@ bootstrap3-contact-form
 
 Bootstrap 3 Contact Form with Captcha
 
-A simple bootstrap 3 contact form using [SecureImage Captcha](https://github.com/dapphp/securimage).
+A simple bootstrap 3 contact form using [SecureImage Captcha](https://github.com/dapphp/securimage).  Submitted messages are sent to a specified email address using SMTP with support for SSL or TLS transport.
 
 ## Dependencies
 
-* [Bootstrap 3](https://github.com/twbs/bootstrap) version >3.1
-* PHP (version > 5.2.0) installed on your server **Must have gd library enabled**
+### PHP
+* version > 5.2.0 (with gd library enabled)
 * [SecureImage Captcha](https://github.com/dapphp/securimage) Captcha (included in [library/vender/securimage/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/library/vender/securimage))
+* [PHPMailer](https://github.com/PHPMailer/PHPMailer) (included in [library/vender/php_mailer/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/library/vender/php_mailer))
+
+### HTML/JS
+* [Bootstrap 3](https://github.com/twbs/bootstrap) version >3.1
 * jQuery
-* **The HTML for the contact form**, which can be extracted from index.html
 * **Optional** [International Telephone Input](https://github.com/Bluefieldscom/intl-tel-input) (included in [assets/vender/intl-tel-input/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/assets/vender/intl-tel-input))- This is used to validate and format the phone input field. Only need this if the phone field is present.
 
-### Adding or Removing Fields
-The Optional Fields of Title, Company and Website are commented out in *index.html*; to add these simply uncomment the the code in *index.html* and uncomment the corresponding values in $fields_req in sendmail.php.  To add or remove additional fields from the contact form:
+## Configuration
 
-#### In the HTML
-1. Add or remove the HTML element from the form (the *form-group*)
-2. When adding, if the field is optional, then add the class `.optional` to the input within the form group
+Configuration values to the contact form are passed in via *Environment Variables*.  The following variables need to be defined:
+| Name                | Description                                                          |
+|-------------------- | -------------------------------------------------------------------- |
+| FEEDBACK_HOSTNAME   | Host name for SMTP server                                            |
+| FEEDBACK_EMAIL      | Email address to authenticate to SMTP server with                    |
+| FEEDBACK_PASSWORD   | Password to authenticate to SMTP server with                         |
+| FEEDBACK_ENCRYPTION | If specified will use encryption.  Valid values: TLS or SLL          |
+| FEEDBACK_SKIP_AUTH  | **Optional** If specified, will not authenticate with email/password |
 
-#### In sendmail.php
-1. Add or remove an entry from the `$fields_req` array (map) in *sendmail.php* (if the field is required the map entry's value must be true, otherwise false)
+Environment variables can be specified in a variety of ways.  For example, if using *Apache* and *mod_env* is enabled, they can be specified in *.htaccess*:
 
-### Further Configuration
-* **Required** Change the MY_EMAIL constant in library/sendmail.php to the email address you want the contant form data to get submitted to.  You can also change the email subject by editing EMAIL_SUBJECT.
-* By default required field inputs are appended with an asterisk.  If you want to remove this feature, add the class `.no-asterisk` to the required input of the form group.
+```
+SetEnv FEEDBACK_HOSTNAME smtp.gmail.com
+SetEnv FEEDBACK_EMAIL me@gmail.com
+SetEnv FEEDBACK_PASSWORD my!password!
+SetEnv FEEDBACK_ENCRYPTION TLS
+```
+
+They can also be specified at the system level, usually in your *.profile* file for a Unix-based OS:
+
+```
+export FEEDBACK_HOSTNAME=smtp.gmail.com
+export FEEDBACK_EMAIL=me@gmail.com
+export FEEDBACK_PASSWORD=my!password!
+export FEEDBACK_ENCRYPTION=TLS
+```
 
 ## Check It Out
 Demo: http://jonbake.com/demos/contact-form/
-
-Blog Post: http://jonbake.com/blog/?p=115

@@ -2,14 +2,6 @@
   //start a session -- needed for Securimage Captcha check
   session_start();
 
-  //add you e-mail address here
-  define("MY_EMAIL", "<<!! YOUR-EMAIL-ADDRESS-HERE !!>>");
-  define("EMAIL_SUBJECT", "Feedback Form Results");
-
-  //a map of fields to include in email, along with if they are required or not
-  //aparently in PHP, arrays (maps) can't be constants?
-  $fields_req =  array("name" => true, /*"title" => false, "company" => false, "website" => false,*/ "phone" => false, "message" => true);
-
   /**
    * Sets error header and json error message response.
    *
@@ -24,10 +16,9 @@
   /**
    * Pulls posted values for all fields in $fields_req array.
    * If a required field does not have a value, an error response is given.
-   *
-   * @param [Array] $fields_req a map of field name to required
    */
-  function setMessageBody ($fields_req) {
+  function constructMessageBody () {
+    $fields_req =  array("name" => true, "email" => true, "message" => true);
     $message_body = "";
     foreach ($fields_req as $name => $required) {
       $postedValue = $_POST[$name];
@@ -40,23 +31,46 @@
     return $message_body;
   }
 
-  $email = $_POST['email']; 
-
   header('Content-type: application/json');
-  //do some simple validation. this should have been validated on the client-side also
-  if (empty($email)) {
-    errorResponse('Email or message is empty.');
-  }
-  $messageBody = setMessageBody($fields_req);
 
   //do Captcha check, make sure the submitter is not a robot:)...
-  include_once './vender/securimage/securimage.php';
+  require './vender/securimage/securimage.php';
   $securimage = new Securimage();
   if (!$securimage->check($_POST['captcha_code'])) {
     errorResponse('Invalid Security Code');
   }
 
+  //attempt to send email
+  $messageBody = constructMessageBody();
+  require './vender/php_mailer/PHPMailerAutoload.php';
+  $mail = new PHPMailer;
+
+  $mail->isSMTP();
+  $mail->Host = getEnv('FEEDBACK_HOSTNAME');
+  if (!getenv('FEEDBACK_SKIP_AUTH')) {
+    $mail->SMTPAuth = true;
+    $mail->Username = getenv('FEEDBACK_EMAIL');
+    $mail->Password = getenv('FEEDBACK_PASSWORD');
+  }
+  if (getenv('FEEDBACK_ENCRYPTION') == 'TLS') {
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
+  } elseif (getenv('FEEDBACK_ENCRYPTION') == 'SSL') {
+    $mail->SMTPSecure = 'ssl';
+    $mail->Port = 465;
+  }
+
+  $mail->setFrom($_POST['email'], $_POST['name']);
+  $mail->addAddress(getenv('FEEDBACK_EMAIL'));
+
+  $mail->Subject = $_POST['reason'];
+  $mail->Body  = $messageBody;
+
+
   //try to send the message
-  echo json_encode(array('message' => 'Your message was successfully submitted.'));
-  mail(MY_EMAIL, EMAIL_SUBJECT, $messageBody, "From: $email");
+  if($mail->send()) {
+    echo json_encode(array('message' => 'Your message was successfully submitted.'));
+  } else {
+    errorResponse('An expected error occured while attempting to send the email: ' . $mail->ErrorInfo);
+  }
 ?>
