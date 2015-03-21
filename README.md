@@ -20,6 +20,7 @@ A simple bootstrap 3 contact form using [SecureImage Captcha](https://github.com
 ## Configuration
 
 Configuration values to the contact form are passed in via *Environment Variables*.  The following variables need to be defined:
+
 | Name                | Description                                                          |
 |-------------------- | -------------------------------------------------------------------- |
 | FEEDBACK_HOSTNAME   | Host name for SMTP server                                            |
