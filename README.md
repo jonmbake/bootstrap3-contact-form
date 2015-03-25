@@ -26,10 +26,10 @@ Configuration values to the contact form are passed in via *Environment Variable
 | FEEDBACK_HOSTNAME   | Host name for SMTP server                                            |
 | FEEDBACK_EMAIL      | Email address to authenticate to SMTP server with                    |
 | FEEDBACK_PASSWORD   | Password to authenticate to SMTP server with                         |
-| FEEDBACK_ENCRYPTION | If specified will use encryption.  Valid values: TLS or SLL          |
+| FEEDBACK_ENCRYPTION | If specified will use encryption.  Valid values: TLS or SSL          |
 | FEEDBACK_SKIP_AUTH  | **Optional** If specified, will not authenticate with email/password |
 
-Environment variables can be specified in a variety of ways.  For example, if using *Apache* and *mod_env* is enabled, they can be specified in *.htaccess*:
+Environment variables can be specified in a variety of ways.  For example, if using *Apache* (and *mod_env* is enabled), they can be specified in *.htaccess*:
 
 ```
 SetEnv FEEDBACK_HOSTNAME smtp.gmail.com
