@@ -44,7 +44,7 @@
   $messageBody = constructMessageBody();
   require './vender/php_mailer/PHPMailerAutoload.php';
   $mail = new PHPMailer;
-
+  $mail->CharSet = 'UTF-8';
   $mail->isSMTP();
   $mail->Host = getEnv('FEEDBACK_HOSTNAME');
   if (!getenv('FEEDBACK_SKIP_AUTH')) {
