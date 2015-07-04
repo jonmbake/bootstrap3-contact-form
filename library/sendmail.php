@@ -1,7 +1,4 @@
 <?php
-  //start a session -- needed for Securimage Captcha check
-  session_start();
-
   /**
    * Sets error header and json error message response.
    *
@@ -34,12 +31,20 @@
   header('Content-type: application/json');
 
   //do Captcha check, make sure the submitter is not a robot:)...
-  require './vender/securimage/securimage.php';
-  $securimage = new Securimage();
-  if (!$securimage->check($_POST['captcha_code'])) {
-    errorResponse('Invalid Security Code');
-  }
+  $url = 'https://www.google.com/recaptcha/api/siteverify';
+  $opts = array('http' =>
+    array(
+      'method'  => 'POST',
+      'header'  => 'Content-type: application/x-www-form-urlencoded',
+      'content' => http_build_query(array('secret' => getenv('RECAPTCHA_SECRET_KEY'), 'response' => $_POST["g-recaptcha-response"]))
+    )
+  );
+  $context  = stream_context_create($opts);
+  $result = json_decode(file_get_contents($url, false, $context, -1, 40000));
 
+  if (!$result->success) {
+    errorResponse('reCAPTCHA checked failed!');
+  }
   //attempt to send email
   $messageBody = constructMessageBody();
   require './vender/php_mailer/PHPMailerAutoload.php';

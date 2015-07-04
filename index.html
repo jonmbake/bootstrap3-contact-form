@@ -88,15 +88,9 @@
               </div>
               <span class="help-block" style="display: none;">Please enter a message.</span>
             </div>
-            <img id="captcha" src="library/vender/securimage/securimage_show.php" alt="CAPTCHA Image" />
-            <a href="#" onclick="document.getElementById('captcha').src = 'library/vender/securimage/securimage_show.php?' + Math.random(); return false" class="btn btn-info btn-sm">Show a Different Image</a><br/>
-            <div class="form-group" style="margin-top: 10px;">
-              <label class="control-label" for="captcha_code">Text Within Image *</label>
-              <div class="input-group">
-                <input type="text" class="form-control" name="captcha_code" id="captcha_code" placeholder="For security, please enter the code displayed in the box." />
-                <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
-              </div>
-              <span class="help-block" style="display: none;">Please enter the code displayed within the image.</span>
+            <div class="form-group">
+              <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+              <span class="help-block" style="display: none;">Please check that you are not a robot.</span>
             </div>
             <span class="help-block" style="display: none;">Please enter a the security code.</span>
             <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Sending..." style="display: block; margin-top: 10px;">Send Feedback</button>
@@ -110,5 +104,6 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="assets/vender/intl-tel-input/js/intlTelInput.min.js"></script>
     <script src="assets/js/contact-form.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
   </body>
 </html>
