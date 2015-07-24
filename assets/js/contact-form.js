@@ -12,7 +12,9 @@
     clearForm: function () {
       $('#feedbackForm .glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
       $('#feedbackForm input,textarea').val("");
-      grecaptcha.reset();
+      if (grecaptcha) {
+        grecaptcha.reset();
+      }
     },
     addError: function ($input) {
       var parentFormGroup = $input.parents('.form-group');
@@ -70,8 +72,6 @@
         success: function(data) {
           contactFormUtils.addAjaxMessage(data.message, false);
           contactFormUtils.clearForm();
-          //get new Captcha on success
-          $('#captcha').attr('src', 'library/vender/securimage/securimage_show.php?' + Math.random());
         },
         error: function(response) {
           contactFormUtils.addAjaxMessage(response.responseJSON.message, true);
