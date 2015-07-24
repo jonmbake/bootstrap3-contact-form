@@ -53,6 +53,10 @@ SetEnv RECAPTCHA_SECRET_KEY 7823skdgjksd828sjdgkn
 
 **Tip:** *Environment Variables* are used in [Sendmail.php](https://github.com/jonmbake/bootstrap3-contact-form/blob/master/library/sendmail.php).  **If you don't want to use Environment Variables**, you can edit *sendmail.php*, replacing calls to #getenv with the corresponding configuration value like in this [Example Gist](https://gist.github.com/jonmbake/0e5b175a72ad9ba64167).
 
+## What If I Don't Want CAPTCHA
+
+There's a branch for that! Check out the branch: [Contact Form without CAPTCHA](https://github.com/jonmbake/bootstrap3-contact-form/tree/no-captcha).
+
 ## Check It Out
 Demo: http://jonbake.com/demos/contact-form/
 
