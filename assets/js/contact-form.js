@@ -12,7 +12,6 @@
     clearForm: function () {
       $('#feedbackForm .glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
       $('#feedbackForm input,textarea').val("");
-      grecaptcha.reset();
     },
     addError: function ($input) {
       var parentFormGroup = $input.parents('.form-group');
