@@ -52,7 +52,7 @@
   $mail->CharSet = 'UTF-8';
   $mail->isSMTP();
   $mail->Host = getEnv('FEEDBACK_HOSTNAME');
-  if (!getenv('FEEDBACK_SKIP_AUTH')) {
+  if (getenv('FEEDBACK_SKIP_AUTH') !== false) {
     $mail->SMTPAuth = true;
     $mail->Username = getenv('FEEDBACK_EMAIL');
     $mail->Password = getenv('FEEDBACK_PASSWORD');
