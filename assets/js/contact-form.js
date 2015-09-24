@@ -36,37 +36,40 @@
       contactFormUtils.clearErrors();
 
       //do a little client-side validation -- check that each field has a value and e-mail field is in proper format
-      var hasErrors = false;
-      $('#feedbackForm input,#feedbackForm textarea').not('.optional').each(function() {
-        var $this = $(this);
-        if (($this.is(':checkbox') && !$this.is(':checked')) || !$this.val()) {
+      //use bootstrap validator (https://github.com/1000hz/bootstrap-validator) if provided, otherwise a bit of custom validation
+      var $form = $("#feedbackForm"),
+        hasErrors = false;
+      if ($form.validator) {
+        hasErrors =  $form.validator('validate').hasErrors;
+      } else {
+        $('#feedbackForm input,#feedbackForm textarea').not('.optional').each(function() {
+          var $this = $(this);
+          if (($this.is(':checkbox') && !$this.is(':checked')) || !$this.val()) {
+            hasErrors = true;
+            contactFormUtils.addError($(this));
+          }
+        });
+        var $email = $('#email');
+        if (!contactFormUtils.isValidEmail($email.val())) {
           hasErrors = true;
-          contactFormUtils.addError($(this));
+          contactFormUtils.addError($email);
         }
-      });
-      var $email = $('#email');
-      if (!contactFormUtils.isValidEmail($email.val())) {
-        hasErrors = true;
-        contactFormUtils.addError($email);
+        var $phone = $('#phone');
+        if ($phone.val() && $phone.intlTelInput && !$phone.intlTelInput("isValidNumber")) {
+          hasErrors = true;
+          contactFormUtils.addError($phone.parent());
+        }
       }
-
-      var $phone = $('#phone');
-      if ($phone.val() && $phone.intlTelInput && !$phone.intlTelInput("isValidNumber")) {
-        hasErrors = true;
-        contactFormUtils.addError($phone.parent());
-      }
-
       //if there are any errors return without sending e-mail
       if (hasErrors) {
         $btn.button('reset');
         return false;
       }
-
       //send the feedback e-mail
       $.ajax({
         type: "POST",
         url: "library/sendmail.php",
-        data: $("#feedbackForm").serialize(),
+        data: $form.serialize(),
         success: function(data) {
           contactFormUtils.addAjaxMessage(data.message, false);
           contactFormUtils.clearForm();

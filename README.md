@@ -9,6 +9,7 @@ A simple bootstrap 3 contact form using [Google's reCAPTCHA](https://developers.
 
 | Versions | Major Enhancement |
 | -------- | ----------------- |
+| 1.3      | Add support for [Bootstrap Validator](https://github.com/1000hz/bootstrap-validator).  If provided, will use it to validate contact form. |
 | 1.2      | Replaced PHP SecureImage Captcha  with Google's reCAPTCHA. |
 | 1.1      | Used PHPMailer. Support for SSL/TLS transport.  Extracted configuration values to environment variables. |
 | 1.0      | First Version - Used PHP SecureImage and PHP mail function |

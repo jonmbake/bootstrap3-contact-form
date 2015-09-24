@@ -35,11 +35,11 @@
       <div id="contact_form" class="row">
         <div class="col-md-12">
           <h2>Contact Us</h2>
-          <form role="form" id="feedbackForm">
+          <form role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
             <div class="form-group">
               <label class="control-label" for="name">Name *</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" />
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required/>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
               </div>
               <span class="help-block" style="display: none;">Please enter your name.</span>
@@ -65,7 +65,7 @@
             -->
             <div class="form-group">
               <label class="control-label" for="email">Reason for Contact *</label>
-              <select name="reason" class="form-control">
+              <select name="reason" class="form-control" required>
                 <option value="General Inquiry">General Inquiry</option>
                 <option value="Place Order">Place Order</option>
                 <option value="Report Issue">Report Issue</option>
@@ -75,7 +75,7 @@
             <div class="form-group">
               <label class="control-label" for="email">Email Address *</label>
               <div class="input-group">
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required/>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
               </div>
               <span class="help-block" style="display: none;">Please enter a valid e-mail address.</span>
@@ -83,7 +83,7 @@
             <div class="form-group">
               <label class="control-label" for="message">Message *</label>
               <div class="input-group">
-                <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Enter your message" ></textarea>
+                <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Enter your message" required></textarea>
                 <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
               </div>
               <span class="help-block" style="display: none;">Please enter a message.</span>
