@@ -17,7 +17,7 @@ A simple bootstrap 3 contact form using [Google's reCAPTCHA](https://developers.
 ## Dependencies
 
 ### PHP
-* version > 5.2.0 (with gd library enabled)
+* version > 5.2.0
 * [PHPMailer](https://github.com/PHPMailer/PHPMailer) (included in [library/vender/php_mailer/**](https://github.com/jonmbake/bootstrap3-contact-form/tree/master/library/vender/php_mailer))
 
 ### HTML/JS
