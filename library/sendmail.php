@@ -43,7 +43,7 @@
   $result = json_decode(file_get_contents($url, false, $context, -1, 40000));
 
   if (!$result->success) {
-    errorResponse('reCAPTCHA checked failed!');
+    errorResponse('reCAPTCHA checked failed! Error codes: ' . join(', ', $result->{"error-codes"}));
   }
   //attempt to send email
   $messageBody = constructMessageBody();
