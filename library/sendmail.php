@@ -65,6 +65,7 @@
     $mail->Port = 465;
   }
 
+  $mail->Sender = getenv('FEEDBACK_EMAIL');
   $mail->setFrom($_POST['email'], $_POST['name']);
   $mail->addAddress(getenv('FEEDBACK_EMAIL'));
 
