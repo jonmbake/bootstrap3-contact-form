@@ -77,6 +77,6 @@
   if($mail->send()) {
     echo json_encode(array('message' => 'Your message was successfully submitted.'));
   } else {
-    errorResponse('An expected error occured while attempting to send the email: ' . $mail->ErrorInfo);
+    errorResponse('An unexpected error occured while attempting to send the email: ' . $mail->ErrorInfo);
   }
 ?>
