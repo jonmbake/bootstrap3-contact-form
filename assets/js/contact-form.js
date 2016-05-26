@@ -1,19 +1,23 @@
 (function () {
+  //using regular expressions, validate email
   var contactFormUtils = {
     isValidEmail: function (email) {
       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return regex.test(email);
     },
+    //if no form errors, remove or hide error messages
     clearErrors: function () {
       $('#emailAlert').remove();
       $('#feedbackForm .help-block').hide();
       $('#feedbackForm .form-group').removeClass('has-error');
     },
+    //upon form clear remove the checked class and replace with unchecked class. Also reset Google ReCaptcha
     clearForm: function () {
       $('#feedbackForm .glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
       $('#feedbackForm input,textarea').val("");
       grecaptcha.reset();
     },
+    //when error, show error messages and track that error exists
     addError: function ($input) {
       var parentFormGroup = $input.parents('.form-group');
       parentFormGroup.children('.help-block').show();
