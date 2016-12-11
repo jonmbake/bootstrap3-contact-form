@@ -31,16 +31,29 @@
   header('Content-type: application/json');
 
   //do Captcha check, make sure the submitter is not a robot:)...
-  $url = 'https://www.google.com/recaptcha/api/siteverify';
-  $opts = array('http' =>
-    array(
-      'method'  => 'POST',
-      'header'  => 'Content-type: application/x-www-form-urlencoded',
-      'content' => http_build_query(array('secret' => getenv('RECAPTCHA_SECRET_KEY'), 'response' => $_POST["g-recaptcha-response"]))
-    )
-  );
-  $context  = stream_context_create($opts);
-  $result = json_decode(file_get_contents($url, false, $context, -1, 40000));
+  $captcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+  $captcha_header = 'Content-type: application/x-www-form-urlencoded';
+  $captcha_post_data = http_build_query(array('secret' => getenv('RECAPTCHA_SECRET_KEY'), 'response' => $_POST["g-recaptcha-response"]));
+  // prefer cURL over #file_get_contents...
+  if (function_exists('curl_init')) {
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $captcha_url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array($captcha_header));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $captcha_post_data);
+    $result = json_decode(curl_exec($ch));
+  } else {
+    $opts = array('http' =>
+      array(
+        'method'  => 'POST',
+        'header'  => $captcha_header,
+        'content' => $captcha_post_data
+      )
+    );
+    $context  = stream_context_create($opts);
+    $result = json_decode(file_get_contents($captcha_url, false, $context, -1, 40000));
+  }
+
 
   if (!$result->success) {
     errorResponse('reCAPTCHA checked failed! Error codes: ' . join(', ', $result->{"error-codes"}));
