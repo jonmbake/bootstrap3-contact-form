@@ -28,9 +28,9 @@ A simple bootstrap 3 contact form using [Google's reCAPTCHA](https://developers.
 
 ## Setting up reCAPTCHA
 
-You must obtain a [Site Key and Secret Key from Google](http://www.google.com/recaptcha/admin).  The *Site Key* must be entered into the [Contact Form HTML](https://github.com/jonmbake/bootstrap3-contact-form/blob/master/index.html) in the place of the text *your_site_key*.  The *Secret Key* should be entered as an configuration value (see next section).
+You must obtain a [Site Key and Secret Key from Google](http://www.google.com/recaptcha/admin).  The *Site Key* must be entered into the [Contact Form HTML](https://github.com/jonmbake/bootstrap3-contact-form/blob/master/index.html) in the place of the text *your_site_key*.  The *Secret Key* should be entered as a configuration value (see next section).
 
-**Note:** Many web servers now force `allow_url_fopen=0` and `allow_url_include=0` due to security concerns (see: [Issue 26](https://github.com/jonmbake/bootstrap3-contact-form/issues/26)). reCAPTCHA verifying will use [cURL](http://php.net/manual/en/book.curl.php) is if it is installed. If you are having issues verifiying reCAPTCHA, most likeyl you need to install [cURL](http://php.net/manual/en/book.curl.php). 
+**Note:** Many web servers now force `allow_url_fopen=0` and `allow_url_include=0` due to security concerns (see: [Issue 26](https://github.com/jonmbake/bootstrap3-contact-form/issues/26)). reCAPTCHA verifying will use [cURL](http://php.net/manual/en/book.curl.php) is if it is installed. If you are having issues verifying reCAPTCHA, most likely you need to install [cURL](http://php.net/manual/en/book.curl.php). 
 
 ## Configuration
 
@@ -64,4 +64,4 @@ There's a branch for that! Check out the branch: [Contact Form without CAPTCHA](
 ## Check It Out
 Demo: http://jonbake.com/demos/contact-form/
 
-Blog Posts: [Bootstrap 3 Contact Form with Captch](https://jonbake.com/blog/bootstrap-3-contact-form-with-captcha/) [A Better Contact Form](https://jonbake.com/blog/a-better-contact-form/)
+Blog Posts: [Bootstrap 3 Contact Form with Captcha](https://jonbake.com/blog/bootstrap-3-contact-form-with-captcha/) [A Better Contact Form](https://jonbake.com/blog/a-better-contact-form/)
