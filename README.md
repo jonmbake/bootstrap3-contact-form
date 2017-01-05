@@ -5,13 +5,14 @@ Bootstrap 3 Contact Form with Google's reCaptcha
 
 A simple bootstrap 3 contact form using [Google's reCAPTCHA](https://developers.google.com/recaptcha/).  Submitted messages are sent to a specified email address using SMTP with support for SSL or TLS transport.
 
-**A Note On Security** [PHPMailer](https://github.com/PHPMailer/PHPMailer), which this contact form is dependent on, had a major security vulnerability fixed in 5.2.20. **It is recommended to update to 1.4.**
+**A Note On Security:** [PHPMailer](https://github.com/PHPMailer/PHPMailer), which this contact form is dependent on, had a major security vulnerability fixed in 5.2.20. **It is recommended to update to 1.4.**
 
 ## Version History
 
 | Versions | Major Enhancement |
 | -------- | ----------------- |
-| 1.4      | Add support for [cURL](http://php.net/manual/en/book.curl.php) when POSTing to verify reCAPTCHA. Bumped PHPMailer version to 5.2.21. |
+| 1.4.1    | Bumped [PHPMailer](https://github.com/PHPMailer/PHPMailer) version to 5.2.21. |
+| 1.4      | Add support for [cURL](http://php.net/manual/en/book.curl.php) when POSTing to verify reCAPTCHA. |
 | 1.3      | Add support for [Bootstrap Validator](https://github.com/1000hz/bootstrap-validator).  If provided, will use it to validate contact form. |
 | 1.2      | Replaced PHP SecureImage Captcha  with Google's reCAPTCHA. |
 | 1.1      | Used PHPMailer. Support for SSL/TLS transport.  Extracted configuration values to environment variables. |
