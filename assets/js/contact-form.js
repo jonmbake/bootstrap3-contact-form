@@ -1,6 +1,6 @@
-(function () {
+(function (window) {
   //using regular expressions, validate email
-  var contactFormUtils = {
+  var contactFormUtils = window.contactFormUtils = {
     isValidEmail: function (email) {
       var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
       return regex.test(email);
@@ -96,4 +96,4 @@
       }
     });
   });
-})();
+})(window);
