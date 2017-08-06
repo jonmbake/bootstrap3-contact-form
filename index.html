@@ -111,7 +111,8 @@
             return $d.resolve();
         };
         $d.then(function () {
-            $("#feedbackSubmit").after('<div id="emailAlert" class="alert alert-success" style="margin-top: 5px;">Your message was successfully submitted.</div>');
+            contactFormUtils.addAjaxMessage('Your message was successfully submitted.', false);
+            contactFormUtils.clearForm();
         });
     </script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
